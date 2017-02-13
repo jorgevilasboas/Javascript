@@ -24,7 +24,7 @@ Operator	| Name  					| Example   | Result
  */
 
 // 03. null != undefined
- var x = 99;
+var x = 99;
 
 x == "99" // true
 x === "99" // false
@@ -82,32 +82,32 @@ Example:
 
 	setInterval(function, interval)
 	clearInterval(number);
-*/
-function sing(){
+	*/
+	function sing(){
 
-	console.log("They told him don't you ever come around here");
-	console.log("Don't wanna see your face, you better disappear");
-	console.log("The fire's in their eyes and their words are really clear");
-	console.log("So beat it, just beat it.");
+		console.log("They told him don't you ever come around here");
+		console.log("Don't wanna see your face, you better disappear");
+		console.log("The fire's in their eyes and their words are really clear");
+		console.log("So beat it, just beat it.");
 
-	console.log("You better run, you better do what you can");
-	console.log("Don't wanna see no blood, don't be a macho man");
-	console.log("You wanna be tough, better do what you can");
-	console.log("So beat it, but you wanna be bad");
+		console.log("You better run, you better do what you can");
+		console.log("Don't wanna see no blood, don't be a macho man");
+		console.log("You wanna be tough, better do what you can");
+		console.log("So beat it, but you wanna be bad");
 
-	console.log("Just beat it, beat it, beat it, beat it");
-	console.log("No one wants to be defeated");
-	console.log("Showin' how funky and strong is your fight");
-	console.log("It doesn't matter who's wrong or right");
-	console.log("Just beat it, beat it");
-	console.log("Just beat it, beat it");
-	console.log("Just beat it, beat it");
-	console.log("Just beat it, beat it");
+		console.log("Just beat it, beat it, beat it, beat it");
+		console.log("No one wants to be defeated");
+		console.log("Showin' how funky and strong is your fight");
+		console.log("It doesn't matter who's wrong or right");
+		console.log("Just beat it, beat it");
+		console.log("Just beat it, beat it");
+		console.log("Just beat it, beat it");
+		console.log("Just beat it, beat it");
 
-}
+	}
 
 
-var number = setInterval(sing, 1000);
+	var number = setInterval(sing, 1000);
 
 //to stop it,  you need to call clearInterval()
 clearInterval(number);
@@ -172,10 +172,164 @@ var nums = [1,2,3];
 var otherNums = nums.slice();
 //both arrays are [1,2,3]
 
+// SPLICE
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+
+//add an element
+myFish.splice(2, 0, 'drum'); 
+// myFish is ["angel", "clown", "drum", "mandarin", "sturgeon"]
+
+//remove an element
+myFish.splice(2, 1); 
+// myFish is ["angel", "clown", "mandarin", "sturgeon"]
+
+myFish.splice(2); 
+// myFish is ["mandarin", "sturgeon"]
+
+
 // FOREACH - USED FOR ARRAY ITERATIONS
 var colors = ["red", "orange","yellow", "green"];
 
-colors.forEach(function(color){
+colors.forEach(function(color, index){
 //color is a placeholder, call it whatever you want
-  console.log(color);
+console.log(color);
+});
+
+// 09 - JAVASCRIPT OBJECTS
+
+var person = {
+	name: "Jorge",
+	age: 36,
+	city: "Berlin"
+};
+
+// 10 - DOM
+
+// acessing document for debugging
+console.dir(document);
+
+// select h1
+var h1 = document.querySelector("h1");
+// manipulating h1
+h1.style.color = "pink";
+
+
+var body = document.querySelector("body");
+var isBlue = false;
+setInterval(function(){
+	if(isBlue){
+		body.style.background = "white";
+	}
+	else {
+		body.style.background = "#3498db";
+	}
+	isBlue = !isBlue;
+}, 500);
+
+
+// SOME DOCUMENT PROPERTIES
+
+document.URL;
+document.head;
+document.body;
+document.links;
+
+
+// 5 MAIN DOCUMENT METHODS
+
+/*
+document.getElementById();
+document.getElementsByClassName();
+document.getElementsByTagName();
+document.querySelector();
+document.querySelectorAll();
+*/
+
+var tag = document.getElementById("highlight");
+console.log(tag);
+
+var tags = document.getElementsByClassName("bolded");
+console.log(tags[0]);
+
+var tags = document.getElementsByTagName("li");
+console.log(tags[0]);
+
+//select by id
+var tag = document.querySelector("#highlight");
+//select by Class
+var tag = document.querySelector(".bolded");
+//select by tag
+var tag = document.querySelector("h1");
+
+//select a list of elements by tag
+var tags = document.querySelectorAll("h1");
+
+// MANIPULATING STYLE
+
+//SELECT
+var tag = document.getElementById("highlight");
+//MANIPULATE
+tag.style.color = "blue";
+tag.style.border = "10px solid red";
+tag.style.fontSize = "70px";
+tag.style.background = "yellow";
+tag.style.marginTop = "200px";
+
+
+//Rather than directly manipulating style with JS, we can define a CSS class and then toggle it on or off with JS
+//INSTEAD OF THIS:
+var tag = document.getElementById("highlight");
+tag.style.color = "blue";
+tag.style.border = "10px solid red";
+/*DEFINE A CLASS IN CSS
+.some-class {
+  color: blue;
+  border: 10px solid red;
+}
+*/
+var tag = document.getElementById("highlight");
+//ADD THE NEW CLASS TO THE SELECTED ELEMENT
+tag.classList.add("some-class");
+
+
+
+/* textContent VS innerHTML 
+
+textContent extracts only the text and innerHTML keeps all the html elements, like <strong> etc.
+
+*/
+
+//Select the <p> tag:
+var tag = document.querySelector("p");
+//Retrieve the textContent:
+tag.textContent; //"This is an awesome paragraph"
+
+//Select the <p> tag:
+var tag = document.querySelector("p");
+
+tag.innerHTML;
+//"This is an <strong>awesome</strong> paragraph"
+
+
+// USING GETATTRIBUTE AND SETATTRIBUTE
+
+var link = document.querySelector("a");
+link.getAttribute("href");  //"www.google.com"
+//CHANGE HREF ATTRIBUTE
+link.setAttribute("href","https://www.linuxmint.com/"); 
+///<a href="www.dogs.com">I am a link</a>
+
+//TO CHANGE THE IMAGE SRC
+var img = document.querySelector("img");
+img.setAttribute("src", "mint.jpg");
+//<img src="corgi.png">
+
+/* ADD EVENT LISTENER
+We select an element and then add an event listener */
+var button = document.querySelector("button");
+var paragraph = document.getElementsByTagName("p");
+
+//SETUP CLICK LISTENER
+button.addEventListener("click", function() {
+  paragraph[1].textContent = "Someone Clicked the Button!";
 });
